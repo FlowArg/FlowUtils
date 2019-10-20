@@ -52,7 +52,7 @@ public class UtilObjects
         return block.getDefaultState();
     }
 
-    public static void registerBlock(List<Item> listItems, List<Block> listBlocks, Block block)
+    public static void registerBlock(List<Block> listBlocks, List<Item> listItems, Block block)
     {
         listBlocks.add(block);
         listItems.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
