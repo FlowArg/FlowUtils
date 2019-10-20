@@ -1,5 +1,7 @@
 package fr.flowarg.flowutils;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.ICommandSender;
@@ -7,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -49,16 +52,16 @@ public class UtilObjects
         return block.getDefaultState();
     }
 
-    /*public static void registerBlock(Block block)
+    public static void registerBlock(List<Item> listItems, List<Block> listBlocks, Block block)
     {
-        BlockInit.BLOCKS.add(block);
-        ItemInit.ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        listBlocks.add(block);
+        listItems.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
     
-    public static void registerItem(Item item)
+    public static void registerItem(List<Item> listItems, Item item)
     {
-        ItemInit.ITEMS.add(item);
-    }*/
+        listItems.add(item);
+    }
 
     public static void sendMessageToPlayer(EntityPlayer player, String msg)
     {
