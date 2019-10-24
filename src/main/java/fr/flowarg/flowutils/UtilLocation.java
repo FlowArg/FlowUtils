@@ -5,6 +5,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
+/**
+ * @author FlowArg
+ * @since 0.1.0
+ */
 public class UtilLocation
 {
     public static double getPlayerX(EntityPlayer player)
@@ -82,7 +86,7 @@ public class UtilLocation
 
     public static double getMaxWorldX(MinecraftServer minecraftServer, EntityPlayer player)
     {
-        return minecraftServer.getWorld(getDimension(player)).getWorldBorder().maxX();
+        return minecraftServer.getWorld(getPlayerDimension(player)).getWorldBorder().maxX();
     }
     public static double getMaxWorldY()
     {
@@ -90,11 +94,11 @@ public class UtilLocation
     }
     public static double getMaxWorldZ(MinecraftServer minecraftServer, EntityPlayer player)
     {
-        return minecraftServer.getWorld(getDimension(player)).getWorldBorder().maxZ();
+        return minecraftServer.getWorld(getPlayerDimension(player)).getWorldBorder().maxZ();
     }
     public static double getMinWorldX(MinecraftServer minecraftServer, EntityPlayer player)
     {
-        return minecraftServer.getWorld(getDimension(player)).getWorldBorder().minX();
+        return minecraftServer.getWorld(getPlayerDimension(player)).getWorldBorder().minX();
     }
     public static double getMinWorldY()
     {
@@ -102,10 +106,10 @@ public class UtilLocation
     }
     public static double getMinWorldZ(MinecraftServer minecraftServer, EntityPlayer player)
     {
-        return minecraftServer.getWorld(getDimension(player)).getWorldBorder().minZ();
+        return minecraftServer.getWorld(getPlayerDimension(player)).getWorldBorder().minZ();
     }
 
-    public static int getDimension(EntityPlayer player)
+    public static int getPlayerDimension(EntityPlayer player)
     {
         return player.dimension;
     }
