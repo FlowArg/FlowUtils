@@ -12,16 +12,18 @@ import net.minecraft.util.text.TextFormatting;
 
 public class CommandID extends CommandBase
 {
+	private final String name = "id";
+	
     @Override
     public String getName()
     {
-        return "id";
+        return this.name;
     }
 
     @Override
     public String getUsage(ICommandSender sender)
     {
-        return "id";
+        return this.name;
     }
 
     @Override

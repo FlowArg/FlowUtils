@@ -17,8 +17,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.integrated.IntegratedServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.chunk.Chunk;
 
 /**
  * @author FlowArg
@@ -26,6 +29,8 @@ import net.minecraft.util.text.TextFormatting;
  */
 public class UtilObjects
 {
+	public static final Minecraft mc = Minecraft.getMinecraft();
+	
     public static boolean isStackEqualToAnotherStack(ItemStack stack1, ItemStack stack2)
     {
         return stack1 == stack2;
@@ -40,10 +45,12 @@ public class UtilObjects
     {
         player.sendMessage(new TextComponentString(msg));
     }
+    
     public static void sendMessageToSender(ICommandSender sender, String msg)
     {
         sender.sendMessage(new TextComponentString(msg));
     }
+    
     public static void sendYouMustToBeAPlayerToUseThisCommandToSender(ICommandSender sender)
     {
         sender.sendMessage(new TextComponentString(TextFormatting.DARK_RED + "You must to be a player to use this command."));
@@ -53,21 +60,33 @@ public class UtilObjects
     {
         entity.setCustomNameTag(name);
     }
+    
     public static void setPlayerCustomNameTag(EntityPlayer player, String name)
     {
         player.setCustomNameTag(name);
     }
+    
     public static void setEntityLivingBaseCustomNameTag(EntityLivingBase livingBase, String name)
     {
         livingBase.setCustomNameTag(name);
     }
+    
     public static IntegratedServer getIntegratedServer()
     {
-    	return Minecraft.getMinecraft().getIntegratedServer();
+    	return mc.getIntegratedServer();
     }
+    
     public static MinecraftServer getMinecraftServer()
     {
-    	return Minecraft.getMinecraft().world.getMinecraftServer();
+    	return mc.world.getMinecraftServer();
+    }
+    
+    public static int getLightLevel()
+    {
+        BlockPos blockpos = new BlockPos(mc.getRenderViewEntity().posX, mc.getRenderViewEntity().getEntityBoundingBox().minY, mc.getRenderViewEntity().posZ);
+    	Chunk chunk = mc.world.getChunkFromBlockCoords(blockpos);
+    	
+    	return chunk.getLightSubtracted(blockpos, 0) + chunk.getLightFor(EnumSkyBlock.SKY, blockpos) + chunk.getLightFor(EnumSkyBlock.BLOCK, blockpos);
     }
     
     /**
@@ -80,14 +99,17 @@ public class UtilObjects
         {
             return stack.equals(new ItemStack(block));
         }
+        
         public static ItemStack getItemStackFromBlock(Block block)
         {
             return new ItemStack(block);
         }
+        
         public static IBlockState getStateFromBlock(Block block)
         {
             return block.getDefaultState();
         }
+        
         public static void registerBlock(List<Block> listBlocks, List<Item> listItems, Block block)
         {
             listBlocks.add(block);
@@ -377,14 +399,17 @@ public class UtilObjects
         {
             return stack.equals(new ItemStack(item));
         }
+        
         public static ItemStack getItemStackFromItem(Item item)
         {
             return new ItemStack(item);
         }
+        
         public static Item getItemFromItemStack(ItemStack item)
         {
             return item.getItem();
         }
+        
         public static void registerItem(List<Item> listItems, Item item)
         {
             listItems.add(item);
@@ -616,6 +641,5 @@ public class UtilObjects
         		ITEMS.add(item);
         	}
         }
-
     }
 }

@@ -108,7 +108,6 @@ public class UtilLocation
     {
         return minecraftServer.getWorld(getPlayerDimension(player)).getWorldBorder().minZ();
     }
-
     public static int getPlayerDimension(EntityPlayer player)
     {
         return player.dimension;

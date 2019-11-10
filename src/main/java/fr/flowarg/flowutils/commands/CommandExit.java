@@ -7,16 +7,24 @@ import net.minecraft.server.MinecraftServer;
 
 public class CommandExit extends CommandStop
 {
+	private final String name = "exit";
+	
 	@Override
 	public String getName()
 	{
-		return "exit";
+		return this.name;
 	}
 	
 	@Override
 	public String getUsage(ICommandSender sender)
 	{
-		return "exit";
+		return this.name;
+	}
+	
+	@Override
+	public int getRequiredPermissionLevel()
+	{
+		return super.getRequiredPermissionLevel();
 	}
 	
 	@Override
